@@ -91,7 +91,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: 01
   image: {fileID: 1880363683544611170}
+  countText: {fileID: 990554805766963127}
   parentAfterDrag: {fileID: 0}
+  count: 3
 --- !u!1 &4298201017785450128
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +159,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
