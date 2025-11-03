@@ -89,11 +89,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df188b1d0bd6934280c0ab1bda3751d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 01
+  itemData: {fileID: 11400000, guid: 9dd88a77ef8e0ea4e835886c42feb3e1, type: 2}
   image: {fileID: 1880363683544611170}
   countText: {fileID: 990554805766963127}
   parentAfterDrag: {fileID: 0}
   count: 3
+  originalItem: {fileID: 0}
 --- !u!1 &4298201017785450128
 GameObject:
   m_ObjectHideFlags: 0

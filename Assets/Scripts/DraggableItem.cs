@@ -7,23 +7,57 @@ using TMPro;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler
 {
-    public string itemID;
+    [Header("Item Data")]
+    [Tooltip("The ItemData ScriptableObject that defines this item")]
+    public ItemData itemData;
+    
+    [Header("UI References")]
     public Image image;
     public TextMeshProUGUI countText;
+    
+    [Header("Item State")]
     [HideInInspector] public Transform parentAfterDrag;
     public int count = 1;
     [HideInInspector] public DraggableItem originalItem;
     private bool isClone = false;
     private bool isDraggingClone = false;
+    
+    // Legacy support - itemID now comes from itemData
+    public string itemID
+    {
+        get { return itemData != null ? itemData.itemID : ""; }
+    }
 
     private void Start()
     {
+        InitializeFromItemData();
         UpdateCountDisplay();
     }
 
     private void OnValidate()
     {
+        InitializeFromItemData();
         UpdateCountDisplay();
+    }
+    
+    /// <summary>
+    /// Initialize the UI from the ItemData ScriptableObject
+    /// </summary>
+    private void InitializeFromItemData()
+    {
+        if (itemData != null && image != null)
+        {
+            image.sprite = itemData.itemSprite;
+        }
+    }
+    
+    /// <summary>
+    /// Change this item to a different ItemData (used for processing transformations)
+    /// </summary>
+    public void TransformToItem(ItemData newItemData)
+    {
+        itemData = newItemData;
+        InitializeFromItemData();
     }
 
     public void UpdateCountDisplay()
@@ -89,9 +123,11 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (cloneItem != null)
         {
             // Set clone properties
+            cloneItem.itemData = this.itemData; // Ensure clone has the same itemData as original
             cloneItem.count = 1;
             cloneItem.isClone = true;
             cloneItem.originalItem = this;
+            cloneItem.InitializeFromItemData(); // Update the clone's sprite from itemData
             cloneItem.UpdateCountDisplay();
             cloneItem.parentAfterDrag = transform.parent;
             

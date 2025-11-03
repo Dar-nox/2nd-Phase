@@ -53,14 +53,18 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                 // Slot already has an item - check if we can stack
                 DraggableItem existingItem = transform.GetChild(0).GetComponent<DraggableItem>();
                 
-                if (existingItem != null && existingItem.itemID == draggableItem.itemID)
+                // Check if items are the same (compare itemData reference for exact match)
+                if (existingItem != null && 
+                    existingItem.itemData != null && 
+                    draggableItem.itemData != null &&
+                    existingItem.itemData == draggableItem.itemData)
                 {
-                    // Same item type, stack them
+                    // Same item type AND same processing state, stack them
                     existingItem.count += draggableItem.count;
                     existingItem.UpdateCountDisplay();
                     Destroy(dropped);
                 }
-                // If different items, do nothing (item will return to original position)
+                // If different items or different processing states, do nothing (item will return to original position)
             }
         }
     }

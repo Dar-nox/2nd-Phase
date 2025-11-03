@@ -223,7 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df188b1d0bd6934280c0ab1bda3751d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 02
+  itemData: {fileID: 11400000, guid: 9e062d26b035a7a49837f331bd796ffb, type: 2}
+  itemID: Ginger_Raw
   image: {fileID: 6832182275164509966}
   countText: {fileID: 5584598877504242873}
   parentAfterDrag: {fileID: 0}
